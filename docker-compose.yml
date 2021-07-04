@@ -1,0 +1,23 @@
+version: '3'
+
+services: 
+    loadbalancer:
+        build: ./nginx
+        ports: 
+            - "4000:80"
+        depends_on: 
+        - server1
+        - server2
+    server1:
+        build: ./server1
+        environment: 
+            - server-satu
+        ports: 
+            - "4001:4000"
+        
+    server2:
+        build: ./server2
+        environment: 
+            - server-dua
+        ports: 
+            - "4002:4000"
